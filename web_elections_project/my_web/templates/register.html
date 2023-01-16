@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+<div align="center">
+    <h1>Let`s register!</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <table border="3px">
+    <tr>
+        <td><label for="form.username">Логин</label></td>
+        <td>{{form.username}}</td>
+    </tr>
+    <tr>
+        <td><label for="form.first_name">Имя</label></td>
+        <td>{{form.first_name}}</td>
+    </tr>
+    <tr>
+        <td><label for="form.last_name">Фамилия</label></td>
+        <td>{{form.last_name}}</td>
+    </tr>
+            <tr>
+                <td><label for="form.email">email</label></td>
+                <td>{{form.email}}</td>
+            </tr>
+            <tr>
+                <td><label for="form.password1">Пароль</label></td>
+                <td>{{form.password1}}</td>
+            </tr>
+            <tr>
+                <td><label for="form.password2">Подтвердите пароль</label></td>
+                <td>{{form.password2}}</td>
+            </tr>
+</table>
+    <br>
+    <input type="submit">
+</form>
+</div>
+
+</body>
+</html>
