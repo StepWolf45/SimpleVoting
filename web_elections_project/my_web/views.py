@@ -1,9 +1,7 @@
+from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
 from my_web.form import UserForm
 from django.contrib import messages
-from django.contrib import messages
-import datetime
 
 
 def index(request):
@@ -26,18 +24,33 @@ def profile(request):
 
 
 def register(request):
+    errors = None
     if request.method == 'POST':
-        form = UserForm(request.POST)
+        form = UserCreationForm(request.POST)
 
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Создан аккаунт {username}!')
 
+            return redirect('/')
+
+        else:
+            errors = list(form.errors)
+
+            for error_index in range(len(errors)):
+                if errors[error_index] == 'username':
+                    errors[error_index] = 'Введен недопустимый логин!'
+
+                if errors[error_index] == 'password2':
+                    errors[error_index] = 'Такой пароль не подходит!'
+
+
     else:
+        messages.error(request, 'Произошел сбой создания аккаунта.')
         form = UserForm()
 
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'register.html', {'form': form, 'errors': errors})
 
 
 # Create your views here.

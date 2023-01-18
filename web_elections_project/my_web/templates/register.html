@@ -9,34 +9,29 @@
     <h1>Let`s register!</h1>
     <form method="POST">
         {% csrf_token %}
-        <table border="3px">
-    <tr>
-        <td><label for="form.username">Логин</label></td>
-        <td>{{form.username}}</td>
-    </tr>
-    <tr>
-        <td><label for="form.first_name">Имя</label></td>
-        <td>{{form.first_name}}</td>
-    </tr>
-    <tr>
-        <td><label for="form.last_name">Фамилия</label></td>
-        <td>{{form.last_name}}</td>
-    </tr>
+        <table>
             <tr>
-                <td><label for="form.email">email</label></td>
-                <td>{{form.email}}</td>
+                <td><label for="">Логин: </label></td>
+                <td>{{form.username}}</td>
             </tr>
+            <tr><td><br></td></tr>
             <tr>
-                <td><label for="form.password1">Пароль</label></td>
+                <td><label for="">Пароль: </label></td>
                 <td>{{form.password1}}</td>
             </tr>
             <tr>
-                <td><label for="form.password2">Подтвердите пароль</label></td>
+                <td><label for="">Повторите пароль: </label></td>
                 <td>{{form.password2}}</td>
             </tr>
-</table>
+        </table>
+        {% if errors %}
+        <br>
+        {% for item in errors %}
+            <p>{{item}}</p>
+        {% endfor %}
+        {% endif %}
     <br>
-    <input type="submit">
+    <input type="submit" value="Создать">
 </form>
 </div>
 
