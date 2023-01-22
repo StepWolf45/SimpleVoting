@@ -1,15 +1,28 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>Hello, world!</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{form}}
-        <input type="submit" value="Подтвердить">
-    </form>
-</body>
+<html lang="ru">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Authorization</title>
+        <link rel="stylesheet" href="/static/auth_style.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+  <body>
+
+      <div class="main_auth">
+          <form method="POST">
+              {% csrf_token %}
+              <h1 id="auth_title">Authorization</h1>
+              <label class="text_field_label" for="login">Login</label>
+              {{form.username}}
+              <label class="text_field_label" for="password">Password</label>
+              {{form.password}}
+              <br>
+              <input type="submit" class="submit_button_auth" value="Submit">
+          </form>
+      </div>
+  </body>
 </html>
