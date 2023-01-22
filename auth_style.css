@@ -11,12 +11,9 @@
 
 .main_auth{
     display: block;
-    position: absolute;
-    width: 40%;
-    margin: 200px 500px 0px 600px;
-    top: 200px;
+    width: 50%;
+    margin: auto;
     text-align: center;
-    padding: 60px 60px 20px 60px;
     border: 4px solid white;
     border-radius: 10%;
 }
