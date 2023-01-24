@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from my_web.form import UserForm
+from my_web.form import MyForm
 from django.contrib import messages
 
 
@@ -17,6 +17,21 @@ def index(request):
         'full_name': full_name,
     }
     return render(request, 'main.html', context)
+
+
+def create(request):
+    context = {}
+    if request.method == 'POST':
+        form = MyForm(request.POST)
+
+        if form.is_valid():
+            pass
+
+    else:
+        form = MyForm()
+
+    context['form'] = form
+    return render(request, 'creating.html', context)
 
 
 def profile(request):
@@ -48,7 +63,7 @@ def register(request):
 
     else:
         messages.error(request, 'Произошел сбой создания аккаунта.')
-        form = UserForm()
+        form = UserCreationForm()
 
     return render(request, 'register.html', {'form': form, 'errors': errors})
 

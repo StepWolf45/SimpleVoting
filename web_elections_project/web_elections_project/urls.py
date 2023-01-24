@@ -21,6 +21,7 @@ from my_web import views
 urlpatterns = [
     path('', views.index),
     path('admin/', admin.site.urls),
+    path('create/', views.create)
 ]
 
 urlpatterns += [

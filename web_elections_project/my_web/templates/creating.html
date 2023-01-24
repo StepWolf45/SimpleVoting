@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'creatingStyle.css' %}">
+    <title>Create</title>
+</head>
+<body>
+<main>
+    <section class="createSection">
+        <form method="POST">
+            <label for="">Введите вопрос:</label>
+            {{ form.text_input }}
+            <hr>
+            <ol>
+                <li class="inputField">
+                    {{ form.checkbox1 }}
+                    {{ form.answer1 }}
+                </li>
+                <br>
+                <li class="inputField">
+                    {{ form.checkbox2 }}
+                    {{ form.answer2 }}
+                </li>
+                <br>
+                <li class="inputField">
+                    {{ form.checkbox3 }}
+                    {{ form.answer3 }}
+                </li>
+                <br>
+                <li class="inputField">
+                    {{ form.checkbox4 }}
+                    {{ form.answer4 }}
+                </li>
+                <br>
+                <li class="inputField">
+                    {{ form.checkbox5 }}
+                    {{ form.answer5 }}
+                </li>
+            </ol>
+        </form>
+    </section>
+</main>
+</body>
+</html>
