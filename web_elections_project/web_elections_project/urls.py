@@ -21,7 +21,8 @@ from my_web import views
 urlpatterns = [
     path('', views.index),
     path('admin/', admin.site.urls),
-    path('create/', views.create)
+    path('create/', views.create),
+    path('voice/<int:voice_id>', views.voice)
 ]
 
 urlpatterns += [

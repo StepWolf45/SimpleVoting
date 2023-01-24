@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'main_style.css' %}">
+    <link rel="stylesheet" href="{% static 'mainStyle.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
@@ -15,9 +15,7 @@
         <a href="/profile">{{full_name}}</a>|<a href="/logout">Выйти</a>
     </div>
     <div class="newVoice">
-        <button>
             <a href="create/">Создать новое голосование</a>
-        </button>
     </div>
     {% else %}
     <div class="userInfo">
@@ -26,7 +24,13 @@
     {% endif %}
 </header>
 <main>
-
+    <section>
+        <section>
+            {% for voice in voices %}
+            <a href="/voice/{{voice.id}}" id="{{voice.id}}">{{voice.question}}</a>
+            {% endfor %}
+        </section>
+    </section>
 </main>
 <footer>
 

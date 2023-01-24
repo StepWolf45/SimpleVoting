@@ -10,6 +10,7 @@
 <main>
     <section class="createSection">
         <form method="POST">
+            {% csrf_token %}
             <label for="">Введите вопрос:</label>
             {{ form.text_input }}
             <hr>
@@ -39,7 +40,20 @@
                     {{ form.answer5 }}
                 </li>
             </ol>
+            <input type="submit">
         </form>
+        <table>
+            {% for item in history %}
+                <tr>
+                    <td>{{ item.question }}</td>
+                    <td>{{ item.answer1 }}</td>
+                    <td>{{ item.answer2 }}</td>
+                    <td>{{ item.answer3 }}</td>
+                    <td>{{ item.answer4 }}</td>
+                    <td>{{ item.answer5 }}</td>
+                </tr>
+            {% endfor %}
+        </table>
     </section>
 </main>
 </body>
