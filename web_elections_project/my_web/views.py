@@ -1,8 +1,9 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from my_web.form import MyForm
-from my_web.models import MultyVoiceHistory
+from my_web.form import MyForm, MultyForm
+from my_web.models import MultyVoiceHistory, VoiceHistory
 from django.contrib import messages
+import datetime
 
 
 def index(request):
@@ -26,7 +27,57 @@ def index(request):
 def voice(request, voice_id):
     context = {}
     voices = MultyVoiceHistory.objects.get(id=voice_id)
+
+    if request.method == 'POST':
+        form = MultyForm(request.POST)
+
+        if 'checkbox1' in form.data.keys():
+            answer1 = True
+        else:
+            answer1 = False
+        if 'checkbox2' in form.data.keys():
+            answer2 = True
+        else:
+            answer2 = False
+
+        if 'checkbox3' in form.data.keys():
+            answer3 = True
+        else:
+            answer3 = False
+
+        if 'checkbox4' in form.data.keys():
+            answer4 = True
+        else:
+            answer4 = False
+
+        if 'checkbox5' in form.data.keys():
+            answer5 = True
+        else:
+            answer5 = False
+
+        if form.is_valid():
+            item = VoiceHistory(
+                voice_id=voice_id,
+                username=request.user.username,
+                answer1=answer1,
+                answer2=answer2,
+                answer3=answer3,
+                answer4=answer4,
+                answer5=answer5,
+                date=datetime.datetime.now()
+            )
+            item.save()
+
+            return redirect('/')
+
+    else:
+        form = MultyForm()
+
+    history = VoiceHistory.objects.filter(voice_id=voice_id)
+
+    context['history'] = history
     context['voice'] = voices
+    context['form'] = form
 
     return render(request, 'voice.html', context)
 

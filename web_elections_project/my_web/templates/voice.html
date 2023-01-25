@@ -29,32 +29,44 @@
             <hr>
             <ol>
                 <li class="inputField">
-                    {{ voice.checkbox1 }}
+                    {{ form.checkbox1 }}
                     {{ voice.answer1 }}
                 </li>
                 <br>
                 <li class="inputField">
-                    {{ voice.checkbox2 }}
+                    {{ form.checkbox2 }}
                     {{ voice.answer2 }}
                 </li>
                 <br>
                 <li class="inputField">
-                    {{ voice.checkbox3 }}
+                    {{ form.checkbox3 }}
                     {{ voice.answer3 }}
                 </li>
                 <br>
                 <li class="inputField">
-                    {{ voice.checkbox4 }}
+                    {{ form.checkbox4 }}
                     {{ voice.answer4 }}
                 </li>
                 <br>
                 <li class="inputField">
-                    {{ voice.checkbox5 }}
+                    {{ form.checkbox5 }}
                     {{ voice.answer5 }}
                 </li>
             </ol>
             <input type="submit">
         </form>
+        <table>
+            {% for item in history %}
+                <tr>
+                    <td>{{ item.username }}</td>
+                    <td>{{ item.answer1 }}</td>
+                    <td>{{ item.answer2 }}</td>
+                    <td>{{ item.answer3 }}</td>
+                    <td>{{ item.answer4 }}</td>
+                    <td>{{ item.answer5 }}</td>
+                </tr>
+            {% endfor %}
+        </table>
     </section>
 </main>
 <footer>
