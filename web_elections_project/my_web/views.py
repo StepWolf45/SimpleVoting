@@ -24,11 +24,6 @@ def index(request):
     return render(request, 'main.html', context)
 
 
-def results(request, voice_id):
-    context = {}
-
-
-
 def voice(request, voice_id):
     context = {}
     voices = MultyVoiceHistory.objects.get(id=voice_id)
@@ -76,11 +71,11 @@ def voice(request, voice_id):
             voice_count = VoiceHistory.objects.filter(voice_id=voice_id).count()
             voice_history = VoiceHistory.objects.filter(voice_id=voice_id)
 
-            count1 = round(voice_history.filter(answer1=True).count() / voice_count, 4) * 100
-            count2 = round(voice_history.filter(answer2=True).count() / voice_count, 4) * 100
-            count3 = round(voice_history.filter(answer3=True).count() / voice_count, 4) * 100
-            count4 = round(voice_history.filter(answer4=True).count() / voice_count, 4) * 100
-            count5 = round(voice_history.filter(answer5=True).count() / voice_count, 4) * 100
+            count1 = round((voice_history.filter(answer1=True).count() / voice_count) * 100, 2)
+            count2 = round((voice_history.filter(answer2=True).count() / voice_count) * 100, 2)
+            count3 = round((voice_history.filter(answer3=True).count() / voice_count) * 100, 2)
+            count4 = round((voice_history.filter(answer4=True).count() / voice_count) * 100, 2)
+            count5 = round((voice_history.filter(answer5=True).count() / voice_count) * 100, 2)
 
             context['voice'] = voices
             context['voice_count'] = voice_count
