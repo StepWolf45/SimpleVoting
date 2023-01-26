@@ -24,6 +24,11 @@ def index(request):
     return render(request, 'main.html', context)
 
 
+def results(request, voice_id):
+    context = {}
+
+
+
 def voice(request, voice_id):
     context = {}
     voices = MultyVoiceHistory.objects.get(id=voice_id)
@@ -68,14 +73,27 @@ def voice(request, voice_id):
             )
             item.save()
 
-            return redirect('/')
+            voice_count = VoiceHistory.objects.filter(voice_id=voice_id).count()
+
+            count1 = VoiceHistory.objects.filter(voice_id=voice_id).filter(answer1=True).count() / voice_count * 100
+            count2 = VoiceHistory.objects.filter(voice_id=voice_id).filter(answer2=True).count() / voice_count * 100
+            count3 = VoiceHistory.objects.filter(voice_id=voice_id).filter(answer3=True).count() / voice_count * 100
+            count4 = VoiceHistory.objects.filter(voice_id=voice_id).filter(answer4=True).count() / voice_count * 100
+            count5 = VoiceHistory.objects.filter(voice_id=voice_id).filter(answer5=True).count() / voice_count * 100
+
+            context['voice'] = voices
+            context['voice_count'] = voice_count
+            context['count1'] = count1
+            context['count2'] = count2
+            context['count3'] = count3
+            context['count4'] = count4
+            context['count5'] = count5
+
+            return render(request, 'results.html', context)
 
     else:
         form = MultyForm()
 
-    history = VoiceHistory.objects.filter(voice_id=voice_id)
-
-    context['history'] = history
     context['voice'] = voices
     context['form'] = form
 
