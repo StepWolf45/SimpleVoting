@@ -2,8 +2,12 @@ from django import forms
 
 
 class MyForm (forms.Form):
-    text_input = forms.CharField()
+    form_type = forms.ChoiceField(choices=(
+        (1, 'Дескретный выбор'),
+        (2, "Множественный выбор")
+    ), required=True)
 
+    text_input = forms.CharField()
     answer1 = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Введите вариант ответа:'}))
     answer2 = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Введите вариант ответа:'}))
     answer3 = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Введите вариант ответа:'}))
@@ -12,8 +16,16 @@ class MyForm (forms.Form):
 
 
 class MultyForm (forms.Form):
-    checkbox1 = forms.BooleanField(widget=forms.CheckboxInput, required=False)
-    checkbox2 = forms.BooleanField(widget=forms.CheckboxInput, required=False)
-    checkbox3 = forms.BooleanField(widget=forms.CheckboxInput, required=False)
-    checkbox4 = forms.BooleanField(widget=forms.CheckboxInput, required=False)
-    checkbox5 = forms.BooleanField(widget=forms.CheckboxInput, required=False)
+    point1 = forms.BooleanField(widget=forms.CheckboxInput, required=False)
+    point2 = forms.BooleanField(widget=forms.CheckboxInput, required=False)
+    point3 = forms.BooleanField(widget=forms.CheckboxInput, required=False)
+    point4 = forms.BooleanField(widget=forms.CheckboxInput, required=False)
+    point5 = forms.BooleanField(widget=forms.CheckboxInput, required=False)
+
+
+class RadioForm (forms.Form):
+    point1 = forms.BooleanField(widget=forms.RadioSelect, required=False)
+    point2 = forms.BooleanField(widget=forms.RadioSelect, required=False)
+    point3 = forms.BooleanField(widget=forms.RadioSelect, required=False)
+    point4 = forms.BooleanField(widget=forms.RadioSelect, required=False)
+    point5 = forms.BooleanField(widget=forms.RadioSelect, required=False)
