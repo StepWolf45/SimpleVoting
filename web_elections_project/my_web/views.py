@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from my_web.form import MyForm, MultyForm
+from my_web.form import MyForm, MultyForm, RadioForm
 from my_web.models import MultyVoiceHistory, VoiceHistory
 from django.contrib import messages
 import datetime
@@ -27,30 +27,34 @@ def index(request):
 def voice(request, voice_id):
     context = {}
     voices = MultyVoiceHistory.objects.get(id=voice_id)
+    voice_type = voices.voice_type
 
     if request.method == 'POST':
-        form = MultyForm(request.POST)
+        if voice_type == 'cb':
+            form = MultyForm(request.POST)
+        else:
+            form = RadioForm(request.POST)
 
-        if 'checkbox1' in form.data.keys():
+        if 'point1' in form.data.keys():
             answer1 = True
         else:
             answer1 = False
-        if 'checkbox2' in form.data.keys():
+        if 'point2' in form.data.keys():
             answer2 = True
         else:
             answer2 = False
 
-        if 'checkbox3' in form.data.keys():
+        if 'point3' in form.data.keys():
             answer3 = True
         else:
             answer3 = False
 
-        if 'checkbox4' in form.data.keys():
+        if 'point4' in form.data.keys():
             answer4 = True
         else:
             answer4 = False
 
-        if 'checkbox5' in form.data.keys():
+        if 'point5' in form.data.keys():
             answer5 = True
         else:
             answer5 = False
@@ -58,6 +62,7 @@ def voice(request, voice_id):
         if form.is_valid():
             item = VoiceHistory(
                 voice_id=voice_id,
+                voice_type=voice_type,
                 username=request.user.username,
                 answer1=answer1,
                 answer2=answer2,
@@ -104,8 +109,15 @@ def create(request):
         if form.is_valid():
             question = form.data['text_input']
 
+            if form.data['form_type'] == 1:
+                voice_type = 'rb'
+            else:
+                voice_type = 'cb'
+
             item = MultyVoiceHistory(
                 question=question,
+                voice_type=voice_type,
+                author=request.user.username,
                 answer1=form.data['answer1'],
                 answer2=form.data['answer2'],
                 answer3=form.data['answer3'],

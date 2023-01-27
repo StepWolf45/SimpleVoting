@@ -2,6 +2,9 @@ from django.db import models
 
 
 class MultyVoiceHistory (models.Model):
+    voice_type = models.CharField(max_length=10, default='')
+    author = models.CharField(max_length=999, default='Anonim')
+
     question = models.CharField(max_length=999)
     answer1 = models.CharField(max_length=999)
     answer2 = models.CharField(max_length=999)
@@ -12,6 +15,7 @@ class MultyVoiceHistory (models.Model):
 
 class VoiceHistory (models.Model):
     voice_id = models.IntegerField()
+    voice_type = models.CharField(max_length=10, default='')
     username = models.CharField(max_length=999)
 
     answer1 = models.BooleanField()
