@@ -26,33 +26,17 @@
         <form method="POST">
             {% csrf_token %}
             {{ voice.question }}
-            <hr>
-            <ol>
-                <li class="inputField">
-                    {{ form.point1 }}
-                    {{ voice.answer1 }}
-                </li>
-                <br>
-                <li class="inputField">
-                    {{ form.point2 }}
-                    {{ voice.answer2 }}
-                </li>
-                <br>
-                <li class="inputField">
-                    {{ form.point3 }}
-                    {{ voice.answer3 }}
-                </li>
-                <br>
-                <li class="inputField">
-                    {{ form.point4 }}
-                    {{ voice.answer4 }}
-                </li>
-                <br>
-                <li class="inputField">
-                    {{ form.point5 }}
-                    {{ voice.answer5 }}
-                </li>
-            </ol>
+            <br>
+            {{form.response.0}} {{voice.answer1}}
+            <br>
+            {{form.response.1}} {{voice.answer2}}
+            <br>
+            {{form.response.2}} {{voice.answer3}}
+            <br>
+            {{form.response.3}} {{voice.answer4}}
+            <br>
+            {{form.response.4}} {{voice.answer5}}
+            <br>
             <input type="submit">
         </form>
         <table>

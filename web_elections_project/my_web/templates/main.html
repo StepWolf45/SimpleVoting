@@ -23,13 +23,16 @@
     </div>
     {% endif %}
 </header>
+<hr>
 <main>
-    <section>
-        <section>
+    <section class="mainSection">
             {% for voice in voices %}
-            <a href="/voice/{{voice.id}}" id="{{voice.id}}">{{voice.question}}</a>
+            <section class="voiceBox">
+                <a href="/voice/{{voice.id}}" id="{{voice.id}}">
+                    {{voice.question}}
+                </a>
+            </section>
             {% endfor %}
-        </section>
     </section>
 </main>
 <footer>

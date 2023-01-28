@@ -1,4 +1,5 @@
 from django import forms
+from my_web.models import MultyVoiceHistory
 
 
 class MyForm (forms.Form):
@@ -16,16 +17,8 @@ class MyForm (forms.Form):
 
 
 class MultyForm (forms.Form):
-    point1 = forms.BooleanField(widget=forms.CheckboxInput, required=False)
-    point2 = forms.BooleanField(widget=forms.CheckboxInput, required=False)
-    point3 = forms.BooleanField(widget=forms.CheckboxInput, required=False)
-    point4 = forms.BooleanField(widget=forms.CheckboxInput, required=False)
-    point5 = forms.BooleanField(widget=forms.CheckboxInput, required=False)
+    response = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple(), choices=[(i, '') for i in range(5)])
 
 
 class RadioForm (forms.Form):
-    point1 = forms.BooleanField(widget=forms.RadioSelect, required=False)
-    point2 = forms.BooleanField(widget=forms.RadioSelect, required=False)
-    point3 = forms.BooleanField(widget=forms.RadioSelect, required=False)
-    point4 = forms.BooleanField(widget=forms.RadioSelect, required=False)
-    point5 = forms.BooleanField(widget=forms.RadioSelect, required=False)
+    response = forms.ChoiceField(widget=forms.RadioSelect, choices=[(i, '') for i in range(5)])

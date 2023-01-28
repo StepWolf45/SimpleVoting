@@ -26,49 +26,36 @@ def index(request):
 
 def voice(request, voice_id):
     context = {}
+    form = None
     voices = MultyVoiceHistory.objects.get(id=voice_id)
     voice_type = voices.voice_type
-
     if request.method == 'POST':
+
         if voice_type == 'cb':
             form = MultyForm(request.POST)
-        else:
+            form_type = 'checkbox'
+
+        if voice_type == 'rb':
             form = RadioForm(request.POST)
-
-        if 'point1' in form.data.keys():
-            answer1 = True
-        else:
-            answer1 = False
-        if 'point2' in form.data.keys():
-            answer2 = True
-        else:
-            answer2 = False
-
-        if 'point3' in form.data.keys():
-            answer3 = True
-        else:
-            answer3 = False
-
-        if 'point4' in form.data.keys():
-            answer4 = True
-        else:
-            answer4 = False
-
-        if 'point5' in form.data.keys():
-            answer5 = True
-        else:
-            answer5 = False
+            form_type = 'radio'
 
         if form.is_valid():
+            response = dict(form.data)['response']
+            value_list = [False] * 5
+
+            for i in range(5):
+                if str(i) in response:
+                    value_list[i] = True
+
             item = VoiceHistory(
                 voice_id=voice_id,
                 voice_type=voice_type,
                 username=request.user.username,
-                answer1=answer1,
-                answer2=answer2,
-                answer3=answer3,
-                answer4=answer4,
-                answer5=answer5,
+                answer1=value_list[0],
+                answer2=value_list[1],
+                answer3=value_list[2],
+                answer4=value_list[3],
+                answer5=value_list[4],
                 date=datetime.datetime.now()
             )
             item.save()
@@ -93,10 +80,17 @@ def voice(request, voice_id):
             return render(request, 'results.html', context)
 
     else:
-        form = MultyForm()
+        if voice_type == 'cb':
+            form = MultyForm()
+            form_type = 'checkbox'
+
+        if voice_type == 'rb':
+            form = RadioForm()
+            form_type = 'radio'
 
     context['voice'] = voices
     context['form'] = form
+    context['form_type'] = form_type
 
     return render(request, 'voice.html', context)
 
@@ -109,7 +103,7 @@ def create(request):
         if form.is_valid():
             question = form.data['text_input']
 
-            if form.data['form_type'] == 1:
+            if form.data['form_type'] == '1':
                 voice_type = 'rb'
             else:
                 voice_type = 'cb'
@@ -125,6 +119,8 @@ def create(request):
                 answer5=form.data['answer5']
             )
             item.save()
+
+            return redirect('/')
     else:
         form = MyForm()
 
