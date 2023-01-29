@@ -24,6 +24,7 @@
     {% endif %}
 </header>
 <main>
+    {% if request.user.is_authenticated %}
     <section>
         <section>
             {% for voice in voices %}
@@ -31,6 +32,7 @@
             {% endfor %}
         </section>
     </section>
+    {%endif%}
 </main>
 <footer>
 
