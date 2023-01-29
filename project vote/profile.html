@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>profile</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <a id="yourplace">PROFILE</a>
+            <a id="logo">VOTE</a>
+            <a>main</a>
+            <a>qotes</a>
+        </ul>
+    </nav>
+    <main>
+        <div id="line">
+            <div id="slider"></div>
+        </div>
+        <div id="mainpart">
+            <div id="block">
+                <div id="announcement">
+                    <p>EDIT</p>
+                    <p>YOUR</p>
+                    <p>PROFILE</p>
+                    <p>HERE</p>
+                </div>
+                <h2 id="exclamationmark">!</h2>
+            </div>
+            <div id="change">
+                <img id="avatar">
+                <div id="chblocks">
+                    <span class="cont"><div class="inf" id="name">Your Name</div> <button class="edit">/</button></span>
+                    <span class="cont"><div class="inf" id="description">Your description</div> <button class="edit">/</button></span>
+                </div>
+            </div>
+        </div>
+        <div id="qotes">
+            <h2 id="yourqotes">YOUR QOTES</h2>
+            <div id="qoteblock">
+                <div class="quote"><span class="point">*</span>your quote <span><button class="edit">V</button><button
+                        class="delete">X</button></span></div>
+                <div class="quote"><span class="point">*</span>your quote <span><button class="edit">V</button><button
+                    class="delete">X</button></span></div>
+                <div class="quote"><span class="point">*</span>your quote <span><button class="edit">V</button><button
+                    class="delete">X</button></span></div>
+            </div>
+        </div>
+    </main>
+    <script>
+        "use strict"
+        window.addEventListener('scroll', function () {
+            if (window.pageYOffset >= document.body.clientHeight / 4)
+                up.style.opacity = 1;
+            else
+                up.style.opacity = 0;
+            per = window.pageYOffset / (document.body.scrollHeight - window.innerHeight) * 100;
+            slider.style.width = per + '%';
+            if (per >= 100) {
+                slider.style.backgroundColor = "#1B0389";
+            }
+            else {
+                slider.style.backgroundColor = "#BB9A52";
+            }
+        })
+    </script>
+</body>
+
+</html>
