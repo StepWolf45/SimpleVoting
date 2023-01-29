@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Create_voting</title>
+        <link rel="stylesheet" href="voting_creation.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+  <body>
+      <div class="create_voting">
+          <!--<form method="POST">-->
+              <!--{% csrf_token %}-->
+
+              <h1 id="auth_title">Voting</h1>
+              <label class="text_field_label" for="topic">Topic</label>
+              <!--{{form.topic}}-->
+              <input class="text_field_input" type="text" name="topic" id="topic" placeholder="Environment">
+              <label class="text_field_label" for="question">Question</label>
+              <!--{{form.question}}-->
+              <input class="text_field_input" type="text" name="question" id="question" placeholder="Do you like milk?">
+              <label class="text_field_label" for="answer">Answer 1</label>
+              <!--{{form.answer1}}-->
+              <input class="text_field_input" type="text" name="answer" id="answer1" placeholder="Yes">
+              <label class="text_field_label" for="answer">Answer 2</label>
+              <!--{{form.answer2}}-->
+              <input class="text_field_input" type="text" name="answer" id="answer2" placeholder="No">
+              <input type="button" name="add_button" id="add_button" value="Add answer">
+              <input type="submit" class="submit_button" value="Submit">
+              <input type="button" name="back_button" id="back_button" value="Back">
+          <!--</form>-->
+      </div>
+  </body>
+</html>
