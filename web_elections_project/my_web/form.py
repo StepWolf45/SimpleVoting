@@ -1,5 +1,8 @@
 from django import forms
-from my_web.models import MultyVoiceHistory
+
+
+class AnswersForm (forms.Form):
+    answer = forms.CharField(required=True)
 
 
 class MyForm (forms.Form):
@@ -9,11 +12,7 @@ class MyForm (forms.Form):
     ), required=True)
 
     text_input = forms.CharField()
-    answer1 = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Введите вариант ответа:'}))
-    answer2 = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Введите вариант ответа:'}))
-    answer3 = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Введите вариант ответа:'}))
-    answer4 = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Введите вариант ответа:'}))
-    answer5 = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Введите вариант ответа:'}))
+    answers = forms.formset_factory(AnswersForm, extra=2)
 
 
 class MultyForm (forms.Form):

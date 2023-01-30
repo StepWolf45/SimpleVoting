@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from my_web.form import MyForm, MultyForm, RadioForm
-from my_web.models import MultyVoiceHistory, VoiceHistory
+from my_web.models import Voices, Questions, Answers
 from django.contrib import messages
 import datetime
 
@@ -15,7 +15,7 @@ def index(request):
     if full_name == ' ':
         full_name = request.user.username
 
-    voices = MultyVoiceHistory.objects.all()
+    voices = Voices.objects.all()
 
     context = {
         'full_name': full_name,
@@ -27,7 +27,7 @@ def index(request):
 def voice(request, voice_id):
     context = {}
     form = None
-    voices = MultyVoiceHistory.objects.get(id=voice_id)
+    voices = Voices.objects.get(id=voice_id)
     voice_type = voices.voice_type
     if request.method == 'POST':
 
@@ -47,7 +47,7 @@ def voice(request, voice_id):
                 if str(i) in response:
                     value_list[i] = True
 
-            item = VoiceHistory(
+            item = Questions(
                 voice_id=voice_id,
                 voice_type=voice_type,
                 username=request.user.username,
@@ -60,8 +60,8 @@ def voice(request, voice_id):
             )
             item.save()
 
-            voice_count = VoiceHistory.objects.filter(voice_id=voice_id).count()
-            voice_history = VoiceHistory.objects.filter(voice_id=voice_id)
+            voice_count = Questions.objects.filter(voice_id=voice_id).count()
+            voice_history = Questions.objects.filter(voice_id=voice_id)
 
             count1 = round((voice_history.filter(answer1=True).count() / voice_count) * 100, 2)
             count2 = round((voice_history.filter(answer2=True).count() / voice_count) * 100, 2)
@@ -97,34 +97,38 @@ def voice(request, voice_id):
 
 def create(request):
     context = {}
+
     if request.method == 'POST':
         form = MyForm(request.POST)
 
-        if form.is_valid():
-            question = form.data['text_input']
+        if request.POST.get('append'):
+            form.answers.extra += 1
 
-            if form.data['form_type'] == '1':
-                voice_type = 'rb'
-            else:
-                voice_type = 'cb'
+        if request.POST.get('create'):
+            if form.is_valid():
 
-            item = MultyVoiceHistory(
-                question=question,
-                voice_type=voice_type,
-                author=request.user.username,
-                answer1=form.data['answer1'],
-                answer2=form.data['answer2'],
-                answer3=form.data['answer3'],
-                answer4=form.data['answer4'],
-                answer5=form.data['answer5']
-            )
-            item.save()
+                question = form.data['text_input']
 
-            return redirect('/')
+                if form.data['form_type'] == '1':
+                    voice_type = 'rb'
+                else:
+                    voice_type = 'cb'
+
+                item = Voices(
+                    question=question,
+                    voice_type=voice_type,
+                    author=request.user.username
+                )
+                item.save()
+
+
+
+                return redirect('/')
     else:
         form = MyForm()
+        form.answers.extra = 2
 
-    history = MultyVoiceHistory.objects.all()
+    history = Voices.objects.all()
     context['history'] = history
     context['form'] = form
 

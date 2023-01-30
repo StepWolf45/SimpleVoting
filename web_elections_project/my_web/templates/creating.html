@@ -16,33 +16,18 @@
             <hr>
             {{form.form_type}}
             <ol>
+                {% for answer in form.answers %}
                 <li class="inputField">
-                    {{ form.checkbox1 }}
-                    {{ form.answer1 }}
+                    {{ answer.answer }}
                 </li>
                 <br>
-                <li class="inputField">
-                    {{ form.checkbox2 }}
-                    {{ form.answer2 }}
-                </li>
-                <br>
-                <li class="inputField">
-                    {{ form.checkbox3 }}
-                    {{ form.answer3 }}
-                </li>
-                <br>
-                <li class="inputField">
-                    {{ form.checkbox4 }}
-                    {{ form.answer4 }}
-                </li>
-                <br>
-                <li class="inputField">
-                    {{ form.checkbox5 }}
-                    {{ form.answer5 }}
-                </li>
+                {% endfor %}
             </ol>
-            <input type="submit">
+            <input type="submit" name="append" value="Добавить">
+            <input type="submit" value="Опубликовать" name="create">
         </form>
+        <br>
+        <a href="/">На главную</a>
     </section>
 </main>
 </body>

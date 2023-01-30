@@ -14,27 +14,7 @@ html {
     background-color: #DCDCDC;
 }
 
-#id_text_input {
+input {
     width: 70%;
-}
-
-#id_answer1 {
-    width: 80%;
-}
-
-#id_answer2 {
-    width: 80%;
-}
-
-#id_answer3 {
-    width: 80%;
-}
-
-#id_answer4 {
-    width: 80%;
-}
-
-#id_answer5 {
-    width: 80%;
 }
 
