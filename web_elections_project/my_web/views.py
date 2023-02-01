@@ -114,16 +114,32 @@ def create(request):
                 else:
                     voice_type = 'cb'
 
+                voice = Voices(
+                    voice_type=voice_type,
+                    author=question.user.username,
+                    question=question
+                )
+                voice.save()
+
+                voice_id = voice.id
+
+                for i in range(form.answers.extra):
+                    item = Questions(
+                        voice_id=voice_id,
+
+                    )
+                    answers.append(form.data[f'form-{i}-answer'])
+
+                context['answers'] = answers
+
+                '''
                 item = Voices(
                     question=question,
                     voice_type=voice_type,
                     author=request.user.username
                 )
                 item.save()
-
-
-
-                return redirect('/')
+                '''
     else:
         form = MyForm()
         form.answers.extra = 2
