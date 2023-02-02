@@ -1,4 +1,5 @@
 from django import forms
+from my_web.models import Voices, Questions, Answers
 
 
 class AnswersForm (forms.Form):
@@ -7,7 +8,7 @@ class AnswersForm (forms.Form):
 
 class MyForm (forms.Form):
     form_type = forms.ChoiceField(choices=(
-        (1, 'Дескретный выбор'),
+        (1, 'Дискретный выбор'),
         (2, "Множественный выбор")
     ), required=True)
 
@@ -16,8 +17,18 @@ class MyForm (forms.Form):
 
 
 class MultyForm (forms.Form):
-    response = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple(), choices=[(i, '') for i in range(5)])
+    response = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple(),
+        choices=[
+            (i, '') for i in range(10)
+        ]
+    )
 
 
 class RadioForm (forms.Form):
-    response = forms.ChoiceField(widget=forms.RadioSelect, choices=[(i, '') for i in range(5)])
+    response = forms.ChoiceField(
+        widget=forms.RadioSelect,
+        choices=[
+            (i, '') for i in range(10)
+        ]
+    )

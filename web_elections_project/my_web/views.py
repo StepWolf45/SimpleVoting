@@ -28,7 +28,10 @@ def voice(request, voice_id):
     context = {}
     form = None
     voices = Voices.objects.get(id=voice_id)
+    questions = Questions.objects.filter(voice_id=voice_id)
+    my_choices = questions.count()
     voice_type = voices.voice_type
+
     if request.method == 'POST':
 
         if voice_type == 'cb':
@@ -40,44 +43,7 @@ def voice(request, voice_id):
             form_type = 'radio'
 
         if form.is_valid():
-            response = dict(form.data)['response']
-            value_list = [False] * 5
-
-            for i in range(5):
-                if str(i) in response:
-                    value_list[i] = True
-
-            item = Questions(
-                voice_id=voice_id,
-                voice_type=voice_type,
-                username=request.user.username,
-                answer1=value_list[0],
-                answer2=value_list[1],
-                answer3=value_list[2],
-                answer4=value_list[3],
-                answer5=value_list[4],
-                date=datetime.datetime.now()
-            )
-            item.save()
-
-            voice_count = Questions.objects.filter(voice_id=voice_id).count()
-            voice_history = Questions.objects.filter(voice_id=voice_id)
-
-            count1 = round((voice_history.filter(answer1=True).count() / voice_count) * 100, 2)
-            count2 = round((voice_history.filter(answer2=True).count() / voice_count) * 100, 2)
-            count3 = round((voice_history.filter(answer3=True).count() / voice_count) * 100, 2)
-            count4 = round((voice_history.filter(answer4=True).count() / voice_count) * 100, 2)
-            count5 = round((voice_history.filter(answer5=True).count() / voice_count) * 100, 2)
-
-            context['voice'] = voices
-            context['voice_count'] = voice_count
-            context['count1'] = count1
-            context['count2'] = count2
-            context['count3'] = count3
-            context['count4'] = count4
-            context['count5'] = count5
-
-            return render(request, 'results.html', context)
+            pass
 
     else:
         if voice_type == 'cb':
@@ -89,6 +55,7 @@ def voice(request, voice_id):
             form_type = 'radio'
 
     context['voice'] = voices
+    context['questions'] = questions
     context['form'] = form
     context['form_type'] = form_type
 
@@ -116,30 +83,24 @@ def create(request):
 
                 voice = Voices(
                     voice_type=voice_type,
-                    author=question.user.username,
+                    author=request.user.username,
                     question=question
                 )
                 voice.save()
-
                 voice_id = voice.id
 
                 for i in range(form.answers.extra):
-                    item = Questions(
+                    question_item = Questions(
                         voice_id=voice_id,
-
+                        voice_type=voice_type,
+                        answer_number=i,
+                        answer=form.data[f'form-{i}-answer'],
+                        date=datetime.datetime.now()
                     )
-                    answers.append(form.data[f'form-{i}-answer'])
+                    question_item.save()
 
-                context['answers'] = answers
+            return redirect('/')
 
-                '''
-                item = Voices(
-                    question=question,
-                    voice_type=voice_type,
-                    author=request.user.username
-                )
-                item.save()
-                '''
     else:
         form = MyForm()
         form.answers.extra = 2
