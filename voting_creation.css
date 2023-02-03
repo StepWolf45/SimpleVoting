@@ -18,7 +18,7 @@
     border-radius: 10%;
 }
 
-.submit_button{
+#submit{
     width: 70px;
     height: 40px;
     margin: 15px 0px 20px 0px;
@@ -29,7 +29,7 @@
     border-color: rgba(34, 139, 34);
 }
 
-.submit_button:hover{
+#submit:hover{
     color: chartreuse;
     border-color: rgba(34, 139, 34); 
     outline: 0;
