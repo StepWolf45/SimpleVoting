@@ -24,16 +24,18 @@
                 <td>{{form.password2}}</td>
             </tr>
         </table>
-        {% if errors %}
+
+    <br>
+    <input type="submit" value="Создать">
+        <br>
+</form>
+    {% if errors %}
         <br>
         {% for item in errors %}
             <p>{{item}}</p>
         {% endfor %}
         {% endif %}
-    <br>
-    <input type="submit" value="Создать">
-</form>
 </div>
-
+<a href="/">На главную</a>
 </body>
 </html>
