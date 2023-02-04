@@ -10,16 +10,14 @@
     <header>
     {% if request.user.is_authenticated %}
     <div class="userInfo">
-        <a href="/profile">{{full_name}}</a>|<a href="/logout">Выйти</a>
-    </div>
-    <div class="newVoice">
-            <a href="create/">Создать новое голосование</a>
+        <a href="/profile">{{user}}</a>|<a href="/logout">Выйти</a>
     </div>
     {% else %}
     <div class="userInfo">
         <a href="/login">Войти</a>|<a href="/register">Зарегестрироваться</a>
     </div>
     {% endif %}
+        <hr>
 </header>
 <main>
     <section>
@@ -37,8 +35,11 @@
             <br>
             {{form.response.4}} {{voice.answer5}}
             <br>
+            <br>
             <input type="submit">
         </form>
+        <br>
+        <a href="/">На главную</a>
         <table>
             {% for item in history %}
                 <tr>

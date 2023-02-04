@@ -155,7 +155,11 @@ def register(request):
                     errors[error_index] = 'Введен недопустимый логин!'
 
                 if errors[error_index] == 'password2':
-                    errors[error_index] = 'Такой пароль не подходит!'
+                    errors[error_index] = ''
+                    errors.append('Пароль должен состоять минимум из 8 символов.')
+                    errors.append('Пароль не должен содержать личную информацию.')
+                    errors.append('Пароль не должен состоять только из цифр.')
+                    errors.append('Пароль не должен быть широко используемым.')
 
 
     else:
