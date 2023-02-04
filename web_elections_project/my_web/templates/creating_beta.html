@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'creatingStyle.css' %}">
+    <title>Create</title>
+</head>
+<body>
+<main>
+    <section class="createSection">
+        <form method="POST">
+            {% csrf_token %}
+            <label class="">Введите вопрос:</label>
+            {{ form.text_input }}
+            <hr>
+            {{form.form_type}}
+            <ol>
+                {% for answer in form.answers %}
+                <li class="inputField">
+                    {{ answer.answer }}
+                </li>
+                <br>
+                {% endfor %}
+            </ol>
+            <input class="actionButton" type="submit" name="append" value="Добавить">
+            <input class="actionButton" type="submit" value="Опубликовать" name="create">
+        </form>
+        <br>
+        <a href="/">На главную</a>
+    </section>
+    {{answers}}
+</main>
+</body>
+</html>

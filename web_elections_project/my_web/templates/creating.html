@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'creatingStyle.css' %}">
-    <title>Create</title>
-</head>
-<body>
-<main>
-    <section class="createSection">
-        <form method="POST">
+<html lang="ru">
+    {% load static %}
+    <head>
+        <meta charset="utf-8">
+        <title>Create_voting</title>
+        <link rel="stylesheet" href="{% static 'voting_creation.css' %}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+  <body>
+      <div class="create_voting">
+          <form method="POST">
             {% csrf_token %}
-            <label for="">Введите вопрос:</label>
-            {{ form.text_input }}
-            <hr>
+              <div id="answers">
+                  <h1 id="auth_title">Voting</h1>
+                  <label class="text_field_label">Введите вопрос:</label>
+                  {{ form.text_input }}
+                  <hr>
             {{form.form_type}}
             <ol>
                 {% for answer in form.answers %}
@@ -23,13 +26,12 @@
                 <br>
                 {% endfor %}
             </ol>
-            <input class="actionButton" type="submit" name="append" value="Добавить">
-            <input class="actionButton" type="submit" value="Опубликовать" name="create">
+              </div>
+              <input type="submit" name="append" id="add_button" value="Add answer">
+              <input type="submit" name="create" id="submit" value="Submit">
         </form>
         <br>
         <a href="/">На главную</a>
-    </section>
-    {{answers}}
-</main>
-</body>
+      </div>
+  </body>
 </html>

@@ -126,3 +126,14 @@ body {
     color:#f3dec0;
 }
 
+.createSection {
+    margin: auto;
+    width: 80%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+input {
+    width: 80%;
+}
+
