@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.topnav{
+    background-color: white;
+    overflow: hidden;
+    text-align: center;
+}
+.topnav a {
+    color: black;
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 30px;
+    margin: 10px 30px;
+}
+ .topnav a:hover{
+     background-color: rgb(231, 40, 91);
+     color: white;
+ }
+.nav_vote{
+    border: 5px solid #212529;
+    font-size: 100px;
+    margin: 16px 10px;
+    text-align: center;
+}
+.voting{
+    margin: 30px;
+    border: #1E90FF 5px solid;
+    padding: 15px;
+}
+ h1{
+     background-color: rgb(239, 160, 39);
+     text-align: center;
+     font-size: 30px;
+     padding: 5px;
+     margin: 15px 30px 15px 30px;
+ }

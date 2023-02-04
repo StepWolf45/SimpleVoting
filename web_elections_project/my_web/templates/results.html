@@ -1,19 +1,28 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'resultStyle.css' %}">
     <title>Title</title>
 </head>
 <body>
 <header>
-
+    <nav class="topnav">
+        <a style="float: left">Create Vote</a>
+        <a class="nav_vote">V O T E</a>
+        <a style="float: right">Profile</a>
+    </nav>
 </header>
     <main>
       <section>
-        <h1>Результаты голосования:</h1>
-        <section>
+        <h1>Voting results:</h1>
+        <section class="voting">
             <p>Всего проголосовало: {{ voice_count }} человек</p>
-            <p>{{ voice.answer1 }}: {{ count1 }}% человек</p>
+            <div class="answer">
+                <p>{{ voice.answer1 }}: {{ count1 }}% человек</p>
+            </div>
+
             <p>{{ voice.answer2 }}: {{ count2 }}% человек</p>
             <p>{{ voice.answer3 }}: {{ count3 }}% человек</p>
             <p>{{ voice.answer4 }}: {{ count4 }}% человек</p>
