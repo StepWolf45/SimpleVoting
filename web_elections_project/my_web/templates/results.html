@@ -12,13 +12,12 @@
       <section>
         <h1>Результаты голосования:</h1>
         <section>
-            <p>Всего проголосовало: {{ voice_count }} человек</p>
-            <p>{{ voice.answer1 }}: {{ count1 }}% человек</p>
-            <p>{{ voice.answer2 }}: {{ count2 }}% человек</p>
-            <p>{{ voice.answer3 }}: {{ count3 }}% человек</p>
-            <p>{{ voice.answer4 }}: {{ count4 }}% человек</p>
-            <p>{{ voice.answer5 }}: {{ count5 }}% человек</p>
+            <p>Всего проголосовало: {{ voiced_people }} человек</p>
             <br>
+            {% for question, answer in answers_list %}
+                {{question}}: {{answer}}
+            <br>
+            {% endfor %}
             <a href="/">На главную</a>
         </section>
       </section>

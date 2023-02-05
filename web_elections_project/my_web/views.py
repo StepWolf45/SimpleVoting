@@ -44,25 +44,47 @@ def voice(request, voice_id):
 
         if form.is_valid():
             answer = form.cleaned_data.get('response')
-            answers = [
+            answers_list = [
                 [choice, False] for choice in range(len(answers_choices))
             ]
 
-            for i in range(len(answers)):
+            for i in range(len(answers_list)):
                 if str(i) in answer:
-                    answers[i][1] = True
+                    answers_list[i][1] = True
 
-            context['answer'] = answers
+            context['answer'] = answers_list
 
-            for item in answers:
-                answer_bd = Answers(
+            for item in answers_list:
+                answer_db = Answers(
                     voice_id=voice_id,
                     answer_number=item[0],
                     author=request.user.username,
                     answer=item[1],
                     date=datetime.datetime.now()
                 )
-                answer_bd.save()
+                answer_db.save()
+
+            answers = Answers.objects.filter(voice_id=voice_id)
+
+            voiced_people = answers.count() // questions.count()
+
+            answers_list = []
+
+            for i in range(questions.count()):
+                current_voice = answers.filter(answer_number=i)
+                voiced_true = current_voice.filter(answer=True).count()
+                voice_num = round(voiced_true / current_voice.count(), 2) * 100
+
+                question = questions.get(answer_number=i).answer
+
+                answers_list.append(
+                    (question, voice_num)
+                )
+
+            context['voiced_people'] = voiced_people
+            context['answers_list'] = answers_list
+
+            return render(request, 'results.html', context)
 
 
 
