@@ -29,35 +29,52 @@ def voice(request, voice_id):
     form = None
     voices = Voices.objects.get(id=voice_id)
     questions = Questions.objects.filter(voice_id=voice_id)
-    my_choices = questions.count()
     voice_type = voices.voice_type
 
-    if request.method == 'POST':
+    answers_choices = [
+        (question.answer_number, question.answer) for question in questions
+    ]
 
+    if request.method == 'POST':
         if voice_type == 'cb':
             form = MultyForm(request.POST)
-            form_type = 'checkbox'
-
         if voice_type == 'rb':
             form = RadioForm(request.POST)
-            form_type = 'radio'
+        form.fields['response'].choices = answers_choices
 
         if form.is_valid():
-            pass
+            answer = form.cleaned_data.get('response')
+            answers = [
+                [choice, False] for choice in range(len(answers_choices))
+            ]
+
+            for i in range(len(answers)):
+                if str(i) in answer:
+                    answers[i][1] = True
+
+            context['answer'] = answers
+
+            for item in answers:
+                answer_bd = Answers(
+                    voice_id=voice_id,
+                    answer_number=item[0],
+                    author=request.user.username,
+                    answer=item[1],
+                    date=datetime.datetime.now()
+                )
+                answer_bd.save()
+
+
 
     else:
         if voice_type == 'cb':
             form = MultyForm()
-            form_type = 'checkbox'
-
         if voice_type == 'rb':
             form = RadioForm()
-            form_type = 'radio'
+        form.fields['response'].choices = answers_choices
 
     context['voice'] = voices
-    context['questions'] = questions
     context['form'] = form
-    context['form_type'] = form_type
 
     return render(request, 'voice.html', context)
 

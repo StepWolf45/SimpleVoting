@@ -27,12 +27,12 @@
             {% csrf_token %}
             {{ voice.question }}
             <br>
-            {{form.response}}
-            {% for question in questions %}
-            {{ question.answer }}
+            {% for resp in form.response %}
+                {{resp}}
             {% endfor %}
             <input type="submit">
         </form>
+        {{answer}}
         <table>
             {% for item in history %}
                 <tr>

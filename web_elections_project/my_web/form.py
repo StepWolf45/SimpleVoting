@@ -18,17 +18,12 @@ class MyForm (forms.Form):
 
 class MultyForm (forms.Form):
     response = forms.MultipleChoiceField(
-        widget=forms.CheckboxSelectMultiple(),
-        choices=[
-            (i, '') for i in range(10)
-        ]
+        widget=forms.CheckboxSelectMultiple, choices=[]
     )
 
 
 class RadioForm (forms.Form):
     response = forms.ChoiceField(
-        widget=forms.RadioSelect,
-        choices=[
-            (i, '') for i in range(10)
-        ]
+        widget=forms.RadioSelect, choices=[]
     )
+
