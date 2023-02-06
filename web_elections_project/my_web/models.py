@@ -5,6 +5,10 @@ class Voices (models.Model):
     voice_type = models.CharField(max_length=10, default='')
     author = models.CharField(max_length=999, default='Anonim')
     question = models.CharField(max_length=999)
+    voice_picture = models.FileField(
+        upload_to='images/',
+        default='images/default_image.png'
+    )
 
 
 class Questions (models.Model):

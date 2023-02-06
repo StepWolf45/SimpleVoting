@@ -121,9 +121,11 @@ def create(request):
                 voice = Voices(
                     voice_type=voice_type,
                     author=request.user.username,
-                    question=question
+                    question=question,
+                    voice_picture=form.data['voice_picture']
                 )
                 voice.save()
+
                 voice_id = voice.id
 
                 for i in range(form.answers.extra):
@@ -173,7 +175,11 @@ def register(request):
                     errors[error_index] = 'Введен недопустимый логин!'
 
                 if errors[error_index] == 'password2':
-                    errors[error_index] = 'Такой пароль не подходит!'
+                    errors[error_index] = ''
+                    errors.append('Пароль должен состоять минимум из 8 символов.')
+                    errors.append('Пароль не должен содержать личную информацию.')
+                    errors.append('Пароль не должен состоять только из цифр.')
+                    errors.append('Пароль не должен быть широко используемым.')
 
 
     else:

@@ -25,7 +25,7 @@
     <section>
         <form method="POST">
             {% csrf_token %}
-            {{ voice.question }}
+            <img src="{% static voice.voice_picture %}" alt="">
             <br>
             {% for resp in form.response %}
                 {{resp}}
