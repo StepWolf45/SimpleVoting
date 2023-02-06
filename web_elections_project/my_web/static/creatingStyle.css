@@ -1,0 +1,40 @@
+.createSection {
+    margin: auto;
+    width: 80%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #eff;
+}
+
+.checkboxParams {
+    margin-left: 8%;
+}
+
+html {
+    background-color: #DCDCDC;
+}
+
+#id_text_input {
+    width: 70%;
+}
+
+#id_answer1 {
+    width: 80%;
+}
+
+#id_answer2 {
+    width: 80%;
+}
+
+#id_answer3 {
+    width: 80%;
+}
+
+#id_answer4 {
+    width: 80%;
+}
+
+#id_answer5 {
+    width: 80%;
+}
+

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'creatingStyle.css' %}">
+    <title>Create</title>
+</head>
+<body>
+<main>
+    <section class="createSection">
+        <form method="POST">
+            {% csrf_token %}
+            <label for="">Введите вопрос:</label>
+            {{ form.text_input }}
+            <hr>
+            <ol>
+                <li class="inputField">
+                    {{ form.checkbox1 }}
+                    {{ form.answer1 }}
+                </li>
+                <br>
+                <li class="inputField">
+                    {{ form.checkbox2 }}
+                    {{ form.answer2 }}
+                </li>
+                <br>
+                <li class="inputField">
+                    {{ form.checkbox3 }}
+                    {{ form.answer3 }}
+                </li>
+                <br>
+                <li class="inputField">
+                    {{ form.checkbox4 }}
+                    {{ form.answer4 }}
+                </li>
+                <br>
+                <li class="inputField">
+                    {{ form.checkbox5 }}
+                    {{ form.answer5 }}
+                </li>
+            </ol>
+            {{form.mode}}
+            <input type="submit">
+
+        </form>
+        <table>
+            {% for item in history %}
+                <tr>
+                    <td>{{ item.question }}</td>
+                    <td>{{ item.answer1 }}</td>
+                    <td>{{ item.answer2 }}</td>
+                    <td>{{ item.answer3 }}</td>
+                    <td>{{ item.answer4 }}</td>
+                    <td>{{ item.answer5 }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+</main>
+</body>
+</html>

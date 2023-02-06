@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'creatingStyle.css' %}">
+    <title>{{voice.question}}</title>
+</head>
+<body>
+    <header>
+    {% if request.user.is_authenticated %}
+    <div class="userInfo">
+        <a href="/profile">{{full_name}}</a>|<a href="/logout">Выйти</a>
+    </div>
+    <div class="newVoice">
+            <a href="create/">Создать новое голосование</a>
+    </div>
+    {% else %}
+    <div class="userInfo">
+        <a href="/login">Войти</a>|<a href="/register">Зарегестрироваться</a>
+    </div>
+    {% endif %}
+</header>
+<main>
+
+    <section>
+        <form method="POST">
+            {% csrf_token %}
+            {{ voice.question }}
+            <hr>
+            <ol>
+                <li class="inputField">
+                    {{ form.checkbox1 }}
+                    {{ voice.answer1 }}
+                </li>
+                <br>
+                <li class="inputField">
+                    {{ form.checkbox2 }}
+                    {{ voice.answer2 }}
+                </li>
+                <br>
+                <li class="inputField">
+                    {{ form.checkbox3 }}
+                    {{ voice.answer3 }}
+                </li>
+                <br>
+                <li class="inputField">
+                    {{ form.checkbox4 }}
+                    {{ voice.answer4 }}
+                </li>
+                <br>
+                <li class="inputField">
+                    {{ form.checkbox5 }}
+                    {{ voice.answer5 }}
+                </li>
+            </ol>
+            <input type="submit">
+        </form>
+        <table>
+            {% for item in history %}
+                <tr>
+                    <td>{{ item.username }}</td>
+                    <td>{{ item.answer1 }}</td>
+                    <td>{{ item.answer2 }}</td>
+                    <td>{{ item.answer3 }}</td>
+                    <td>{{ item.answer4 }}</td>
+                    <td>{{ item.answer5 }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+
+</main>
+<footer>
+
+</footer>
+</body>
+</html>
