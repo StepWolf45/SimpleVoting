@@ -86,8 +86,6 @@ def voice(request, voice_id):
 
             return render(request, 'results.html', context)
 
-
-
     else:
         if voice_type == 'cb':
             form = MultyForm()

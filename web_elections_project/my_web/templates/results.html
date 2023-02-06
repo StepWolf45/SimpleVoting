@@ -15,8 +15,7 @@
             <p>Всего проголосовало: {{ voiced_people }} человек</p>
             <br>
             {% for question, answer in answers_list %}
-                {{question}}: {{answer}}
-            <br>
+                <p>{{question}}: {{answer}}%</p>
             {% endfor %}
             <a href="/">На главную</a>
         </section>
