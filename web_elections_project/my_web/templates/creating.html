@@ -10,7 +10,7 @@
     </head>
   <body>
       <div class="create_voting">
-          <form method="POST">
+          <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
               <div id="answers">
                   <h1 id="auth_title">Voting</h1>

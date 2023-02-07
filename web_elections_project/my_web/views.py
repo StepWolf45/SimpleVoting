@@ -81,6 +81,7 @@ def voice(request, voice_id):
                     (question, voice_num)
                 )
 
+            context['voice'] = voices
             context['voiced_people'] = voiced_people
             context['answers_list'] = answers_list
 
@@ -118,12 +119,20 @@ def create(request):
                 else:
                     voice_type = 'cb'
 
-                voice = Voices(
-                    voice_type=voice_type,
-                    author=request.user.username,
-                    question=question,
-                    voice_picture=form.data['voice_picture']
-                )
+                if dict(request.FILES) == {}:
+                    voice = Voices(
+                        voice_type=voice_type,
+                        author=request.user.username,
+                        question=question,
+                    )
+                else:
+                    voice = Voices(
+                        voice_type=voice_type,
+                        author=request.user.username,
+                        question=question,
+                        voice_picture=request.FILES['voice_picture']
+                    )
+
                 voice.save()
 
                 voice_id = voice.id

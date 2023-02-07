@@ -4,16 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03060b2b-5a0c-42a3-a37c-0f7db153f19b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/web_elections_project/my_web/static/images/default_image.png" afterDir="false" />
+    <list default="true" id="03060b2b-5a0c-42a3-a37c-0f7db153f19b" name="Changes" comment="выводит картинку">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web_elections_project/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/web_elections_project/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web_elections_project/my_web/form.py" beforeDir="false" afterPath="$PROJECT_DIR$/web_elections_project/my_web/form.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web_elections_project/my_web/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/web_elections_project/my_web/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web_elections_project/my_web/templates/creating.html" beforeDir="false" afterPath="$PROJECT_DIR$/web_elections_project/my_web/templates/creating.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_elections_project/my_web/templates/results.html" beforeDir="false" afterPath="$PROJECT_DIR$/web_elections_project/my_web/templates/results.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web_elections_project/my_web/templates/voice.html" beforeDir="false" afterPath="$PROJECT_DIR$/web_elections_project/my_web/templates/voice.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web_elections_project/my_web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web_elections_project/my_web/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web_elections_project/web_elections_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/web_elections_project/web_elections_project/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_elections_project/web_elections_project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/web_elections_project/web_elections_project/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,22 +36,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/prom/PycharmProjects&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Git.Branch.Popup.ShowAllRemotes": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/prom/PycharmProjects/web_elections/web_elections_project/my_web",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web_elections_project/my_web" />
+      <recent name="$PROJECT_DIR$/web_elections_project/my_web/static/images" />
+      <recent name="$PROJECT_DIR$/web_elections_project/web_elections_project" />
+      <recent name="$PROJECT_DIR$/web_elections_project/my_web/templates" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/web_elections_project/my_web/static" />
       <recent name="$PROJECT_DIR$/web_elections_project/my_web/templates" />
@@ -96,7 +101,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675627535752</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="выводит картинку">
+      <created>1675714804673</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1675714804673</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -118,6 +130,7 @@
     <MESSAGE value="спарил html с django" />
     <MESSAGE value="смог доюавить поинты и записат в бд" />
     <MESSAGE value="выводит результат" />
-    <option name="LAST_COMMIT_MESSAGE" value="выводит результат" />
+    <MESSAGE value="выводит картинку" />
+    <option name="LAST_COMMIT_MESSAGE" value="выводит картинку" />
   </component>
 </project>
