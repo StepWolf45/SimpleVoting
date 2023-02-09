@@ -24,7 +24,8 @@ urlpatterns = [
     path('', views.index),
     path('admin/', admin.site.urls),
     path('create/', views.create),
-    path('voice/<int:voice_id>', views.voice)
+    path('voice/<int:voice_id>', views.voice),
+    path('change/<int:voice_id>', views.change)
 ]
 
 urlpatterns += [

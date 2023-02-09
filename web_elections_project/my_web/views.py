@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
+from django.forms import formset_factory
 from django.shortcuts import render, redirect
-from my_web.form import MyForm, MultyForm, RadioForm
+from my_web.form import MyForm, MultyForm, RadioForm, AnswersSet
 from my_web.models import Voices, Questions, Answers
 from django.contrib import messages
 import datetime
@@ -161,7 +162,88 @@ def create(request):
 
 
 def profile(request):
-    return render(request, 'profile.html', {})
+    context = {}
+    voices = Voices.objects.filter(author=request.user.username)
+    context['voices'] = voices
+    return render(request, 'profile.html', context)
+
+
+def change(request, voice_id):
+    context = {'voices': voice_id}
+
+    voices = Voices.objects.get(id=voice_id)
+    questions = Questions.objects.filter(voice_id=voice_id)
+
+    if request.method == 'POST':
+        change_form = MyForm(
+            request.POST,
+            initial={
+                'text_input': voices.question,
+                'form_type': voices.voice_type,
+            }
+        )
+
+        if request.POST.get('append'):
+            change_form.answers.extra += 1
+
+        change_form.answers = change_form.answers(
+            initial=[
+                {'answer': i.answer} for i in questions
+            ]
+        )
+
+        if request.POST.get('create'):
+            if change_form.is_valid():
+                Questions.objects.filter(voice_id=voice_id).delete()
+                Answers.objects.filter(voice_id=voice_id).delete()
+
+                voice_mod = Voices.objects.get(id=voice_id)
+
+                question = change_form.data['text_input']
+
+                if change_form.data['form_type'] == '1':
+                    voice_type = 'rb'
+                else:
+                    voice_type = 'cb'
+
+                voice_mod.question = question
+                voice_mod.voice_type = voice_type
+                voice_mod.save()
+
+                for i in range(change_form.answers.extra + questions.count()):
+                    question_item = Questions(
+                        voice_id=voice_id,
+                        voice_type=voice_type,
+                        answer_number=i,
+                        answer=change_form.data[f'form-{i}-answer'],
+                        date=datetime.datetime.now()
+                    )
+                    question_item.save()
+
+            return redirect('/')
+
+    else:
+        change_form = MyForm(
+            initial={
+                'text_input': voices.question,
+                'form_type': voices.voice_type,
+            }
+        )
+
+        change_form.answers.extra = 1
+
+        change_form.answers = change_form.answers(
+            initial=[
+                {'answer': i.answer} for i in questions
+            ]
+        )
+
+    context['question'] = voices.question
+    context['voice_type'] = voices.voice_type
+    context['voice_picture'] = voices.voice_picture
+    context['change_form'] = change_form
+
+    return render(request, 'change.html', context)
 
 
 def register(request):

@@ -5,6 +5,9 @@ class AnswersForm (forms.Form):
     answer = forms.CharField(required=True)
 
 
+AnswersSet = forms.formset_factory(AnswersForm)
+
+
 class MyForm (forms.Form):
     form_type = forms.ChoiceField(choices=(
         (1, 'Дискретный выбор'),
@@ -16,7 +19,7 @@ class MyForm (forms.Form):
     )
 
     text_input = forms.CharField()
-    answers = forms.formset_factory(AnswersForm, extra=2)
+    answers = forms.formset_factory(AnswersForm)
 
 
 class MultyForm (forms.Form):

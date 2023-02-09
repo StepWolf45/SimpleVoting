@@ -4,11 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03060b2b-5a0c-42a3-a37c-0f7db153f19b" name="Changes" comment="выводит картинку" />
+    <list default="true" id="03060b2b-5a0c-42a3-a37c-0f7db153f19b" name="Changes" comment="теперь вопрос будет">
+      <change afterPath="$PROJECT_DIR$/web_elections_project/my_web/templates/change.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_elections_project/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/web_elections_project/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_elections_project/my_web/form.py" beforeDir="false" afterPath="$PROJECT_DIR$/web_elections_project/my_web/form.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_elections_project/my_web/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/web_elections_project/my_web/templates/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_elections_project/my_web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web_elections_project/my_web/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_elections_project/web_elections_project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/web_elections_project/web_elections_project/urls.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -29,6 +44,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "Git.Branch.Popup.ShowAllRemotes": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -106,7 +122,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675799983605</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="теперь вопрос будет">
+      <created>1675800287782</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1675800287782</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,6 +152,7 @@
     <MESSAGE value="смог доюавить поинты и записат в бд" />
     <MESSAGE value="выводит результат" />
     <MESSAGE value="выводит картинку" />
-    <option name="LAST_COMMIT_MESSAGE" value="выводит картинку" />
+    <MESSAGE value="теперь вопрос будет" />
+    <option name="LAST_COMMIT_MESSAGE" value="теперь вопрос будет" />
   </component>
 </project>
