@@ -5,7 +5,6 @@
     <title>Title</title>
 </head>
 <body>
-    <img src="{{voice_picture.url}}" alt="">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <h1 id="auth_title">Voting</h1>
@@ -21,8 +20,11 @@
             </li>
             {% endfor %}
             </ol>
-        <input type="submit" name="append" id="add_button" value="Add answer">
+        <input type="submit" name="append" id="add_button" value="+">
+        <input type="submit" name="minus" value="-">
+        <br>
         <input type="submit" name="create" id="submit" value="Submit">
+        <input type="submit" name="delete" value="Delete">
     </form>
 <a href="/">На главную</a>
 </body>

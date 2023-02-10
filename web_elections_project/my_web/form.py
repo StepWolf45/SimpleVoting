@@ -5,9 +5,6 @@ class AnswersForm (forms.Form):
     answer = forms.CharField(required=True)
 
 
-AnswersSet = forms.formset_factory(AnswersForm)
-
-
 class MyForm (forms.Form):
     form_type = forms.ChoiceField(choices=(
         (1, 'Дискретный выбор'),
@@ -32,4 +29,3 @@ class RadioForm (forms.Form):
     response = forms.ChoiceField(
         widget=forms.RadioSelect, choices=[]
     )
-

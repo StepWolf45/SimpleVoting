@@ -1,7 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
-from django.forms import formset_factory
 from django.shortcuts import render, redirect
-from my_web.form import MyForm, MultyForm, RadioForm, AnswersSet
+from my_web.form import MyForm, MultyForm, RadioForm
 from my_web.models import Voices, Questions, Answers
 from django.contrib import messages
 import datetime
@@ -179,18 +178,28 @@ def change(request, voice_id):
             request.POST,
             initial={
                 'text_input': voices.question,
-                'form_type': voices.voice_type,
+                'form_type': voices.voice_type
             }
         )
 
         if request.POST.get('append'):
             change_form.answers.extra += 1
 
+        if request.POST.get('minus'):
+            change_form.answers.extra -= 1
+
         change_form.answers = change_form.answers(
             initial=[
                 {'answer': i.answer} for i in questions
             ]
         )
+
+        if request.POST.get('delete'):
+            Voices.objects.get(id=voice_id).delete()
+            Questions.objects.filter(voice_id=voice_id).delete()
+            Answers.objects.filter(voice_id=voice_id).delete()
+
+            return redirect('/')
 
         if request.POST.get('create'):
             if change_form.is_valid():
@@ -205,6 +214,11 @@ def change(request, voice_id):
                     voice_type = 'rb'
                 else:
                     voice_type = 'cb'
+
+                if dict(request.FILES) == {}:
+                    voice_mod.voice_picture = 'images/default_image.png'
+                else:
+                    voice_mod.voice_picture = request.FILES['voice_picture']
 
                 voice_mod.question = question
                 voice_mod.voice_type = voice_type
@@ -230,7 +244,7 @@ def change(request, voice_id):
             }
         )
 
-        change_form.answers.extra = 1
+        change_form.answers.extra = 0
 
         change_form.answers = change_form.answers(
             initial=[
@@ -278,6 +292,5 @@ def register(request):
         form = UserCreationForm()
 
     return render(request, 'register.html', {'form': form, 'errors': errors})
-
 
 # Create your views here.
