@@ -13,10 +13,10 @@
         <h1>Результаты голосования:</h1>
         <section>
             <p>Всего проголосовало: {{ voiced_people }} человек</p>
+            <img src="{{voice.voice_picture.url}}" alt="">
             <br>
             {% for question, answer in answers_list %}
-                {{question}}: {{answer}}
-            <br>
+                <p>{{question}}: {{answer}}%</p>
             {% endfor %}
             <a href="/">На главную</a>
         </section>

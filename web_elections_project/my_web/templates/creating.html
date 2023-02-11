@@ -10,14 +10,15 @@
     </head>
   <body>
       <div class="create_voting">
-          <form method="POST">
+          <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
               <div id="answers">
                   <h1 id="auth_title">Voting</h1>
                   <label class="text_field_label">Введите вопрос:</label>
                   {{ form.text_input }}
                   <hr>
-            {{form.form_type}}
+                  {{form.form_type}}
+                  {{form.voice_picture}}
             <ol>
                 {% for answer in form.answers %}
                 <li class="inputField">

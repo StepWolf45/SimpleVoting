@@ -81,12 +81,11 @@ def voice(request, voice_id):
                     (question, voice_num)
                 )
 
+            context['voice'] = voices
             context['voiced_people'] = voiced_people
             context['answers_list'] = answers_list
 
             return render(request, 'results.html', context)
-
-
 
     else:
         if voice_type == 'cb':
@@ -120,12 +119,22 @@ def create(request):
                 else:
                     voice_type = 'cb'
 
-                voice = Voices(
-                    voice_type=voice_type,
-                    author=request.user.username,
-                    question=question
-                )
+                if dict(request.FILES) == {}:
+                    voice = Voices(
+                        voice_type=voice_type,
+                        author=request.user.username,
+                        question=question,
+                    )
+                else:
+                    voice = Voices(
+                        voice_type=voice_type,
+                        author=request.user.username,
+                        question=question,
+                        voice_picture=request.FILES['voice_picture']
+                    )
+
                 voice.save()
+
                 voice_id = voice.id
 
                 for i in range(form.answers.extra):
@@ -152,7 +161,103 @@ def create(request):
 
 
 def profile(request):
-    return render(request, 'profile.html', {})
+    context = {}
+    voices = Voices.objects.filter(author=request.user.username)
+    context['voices'] = voices
+    return render(request, 'profile.html', context)
+
+
+def change(request, voice_id):
+    context = {'voices': voice_id}
+
+    voices = Voices.objects.get(id=voice_id)
+    questions = Questions.objects.filter(voice_id=voice_id)
+
+    if request.method == 'POST':
+        change_form = MyForm(
+            request.POST,
+            initial={
+                'text_input': voices.question,
+                'form_type': voices.voice_type
+            }
+        )
+
+        if request.POST.get('append'):
+            change_form.answers.extra += 1
+
+        if request.POST.get('minus'):
+            change_form.answers.extra -= 1
+
+        change_form.answers = change_form.answers(
+            initial=[
+                {'answer': i.answer} for i in questions
+            ]
+        )
+
+        if request.POST.get('delete'):
+            Voices.objects.get(id=voice_id).delete()
+            Questions.objects.filter(voice_id=voice_id).delete()
+            Answers.objects.filter(voice_id=voice_id).delete()
+
+            return redirect('/')
+
+        if request.POST.get('create'):
+            if change_form.is_valid():
+                Questions.objects.filter(voice_id=voice_id).delete()
+                Answers.objects.filter(voice_id=voice_id).delete()
+
+                voice_mod = Voices.objects.get(id=voice_id)
+
+                question = change_form.data['text_input']
+
+                if change_form.data['form_type'] == '1':
+                    voice_type = 'rb'
+                else:
+                    voice_type = 'cb'
+
+                if dict(request.FILES) == {}:
+                    voice_mod.voice_picture = 'images/default_image.png'
+                else:
+                    voice_mod.voice_picture = request.FILES['voice_picture']
+
+                voice_mod.question = question
+                voice_mod.voice_type = voice_type
+                voice_mod.save()
+
+                for i in range(change_form.answers.extra + questions.count()):
+                    question_item = Questions(
+                        voice_id=voice_id,
+                        voice_type=voice_type,
+                        answer_number=i,
+                        answer=change_form.data[f'form-{i}-answer'],
+                        date=datetime.datetime.now()
+                    )
+                    question_item.save()
+
+            return redirect('/')
+
+    else:
+        change_form = MyForm(
+            initial={
+                'text_input': voices.question,
+                'form_type': voices.voice_type,
+            }
+        )
+
+        change_form.answers.extra = 0
+
+        change_form.answers = change_form.answers(
+            initial=[
+                {'answer': i.answer} for i in questions
+            ]
+        )
+
+    context['question'] = voices.question
+    context['voice_type'] = voices.voice_type
+    context['voice_picture'] = voices.voice_picture
+    context['change_form'] = change_form
+
+    return render(request, 'change.html', context)
 
 
 def register(request):
@@ -175,7 +280,11 @@ def register(request):
                     errors[error_index] = 'Введен недопустимый логин!'
 
                 if errors[error_index] == 'password2':
-                    errors[error_index] = 'Такой пароль не подходит!'
+                    errors[error_index] = ''
+                    errors.append('Пароль должен состоять минимум из 8 символов.')
+                    errors.append('Пароль не должен содержать личную информацию.')
+                    errors.append('Пароль не должен состоять только из цифр.')
+                    errors.append('Пароль не должен быть широко используемым.')
 
 
     else:
@@ -183,6 +292,5 @@ def register(request):
         form = UserCreationForm()
 
     return render(request, 'register.html', {'form': form, 'errors': errors})
-
 
 # Create your views here.

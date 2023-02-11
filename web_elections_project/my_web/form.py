@@ -1,5 +1,4 @@
 from django import forms
-from my_web.models import Voices, Questions, Answers
 
 
 class AnswersForm (forms.Form):
@@ -12,8 +11,12 @@ class MyForm (forms.Form):
         (2, "Множественный выбор")
     ), required=True)
 
+    voice_picture = forms.FileField(
+        required=False
+    )
+
     text_input = forms.CharField()
-    answers = forms.formset_factory(AnswersForm, extra=2)
+    answers = forms.formset_factory(AnswersForm)
 
 
 class MultyForm (forms.Form):
@@ -26,4 +29,3 @@ class RadioForm (forms.Form):
     response = forms.ChoiceField(
         widget=forms.RadioSelect, choices=[]
     )
-

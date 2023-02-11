@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1 id="auth_title">Voting</h1>
+        <label class="text_field_label">Введите вопрос:</label>
+        {{ change_form.text_input }}
+        <hr>
+        {{change_form.form_type}}
+        {{change_form.voice_picture}}
+        <ol>
+            {% for answer in change_form.answers %}
+            <li class="inputField">
+                {{ answer.answer }}
+            </li>
+            {% endfor %}
+            </ol>
+        <input type="submit" name="append" id="add_button" value="+">
+        <input type="submit" name="minus" value="-">
+        <br>
+        <input type="submit" name="create" id="submit" value="Submit">
+        <input type="submit" name="delete" value="Delete">
+    </form>
+<a href="/">На главную</a>
+</body>
+</html>
