@@ -7,9 +7,6 @@
     <list default="true" id="03060b2b-5a0c-42a3-a37c-0f7db153f19b" name="Changes" comment="теперь можно изменять голосования">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web_elections_project/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/web_elections_project/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web_elections_project/my_web/form.py" beforeDir="false" afterPath="$PROJECT_DIR$/web_elections_project/my_web/form.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web_elections_project/my_web/templates/change.html" beforeDir="false" afterPath="$PROJECT_DIR$/web_elections_project/my_web/templates/change.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web_elections_project/my_web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web_elections_project/my_web/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
