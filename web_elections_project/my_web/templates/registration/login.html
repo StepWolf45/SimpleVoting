@@ -5,22 +5,21 @@
     <head>
         <meta charset="utf-8">
         <title>Authorization</title>
-        <link rel="stylesheet" href="{% static 'auth_style.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'auth_style.css' %}">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
   <body>
 
+
       <div class="main_auth">
           <form method="POST">
               {% csrf_token %}
-              <h1 id="auth_title">Authorization</h1>
-              <label class="text_field_label" for="login">Login</label>
+              <h1 id="auth_title">LOGIN</h1>
               {{form.username}}
-              <label class="text_field_label" for="password">Password</label>
               {{form.password}}
               <br>
-              <input type="submit" class="submit_button_auth" value="Submit">
+              <input type="submit" class="submit_button_auth" value="Sign in">
           </form>
       </div>
   </body>
