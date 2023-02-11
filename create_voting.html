@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ru">
-
     <head>
         <meta charset="utf-8">
         <title>Create_voting</title>
@@ -10,11 +9,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
   <body>
+
+      <div class="bg"></div>
+      <div class="bg bg2"></div>
+      <div class="bg bg3"></div>
+
       <div class="create_voting">
           <!--<form method="POST">-->
               <!--{% csrf_token %}-->
           <div id="answers">
-              <h1 id="auth_title">Voting</h1>
+              <h1 id="auth_title">VOTING</h1>
               <label class="text_field_label" for="topic">Topic</label>
               <!--{{form.topic}}-->
               <input class="text_field_input" type="text" name="topic" id="topic" placeholder="Environment">
@@ -28,8 +32,10 @@
               <!--{{form.answer2}}-->
               <input class="text_field_input" type="text" name="answer" id="answer2" placeholder="No">
          </div>
-              <input type="button" name="add_button" id="add_button" value="Add answer">
+          <div id="button_area">
+              <input type="button" name="add_button"  id="add_button" value="Add answer">
               <input type="button" name="submit" id="submit" value="Submit">
+          </div>
               <script>
                   let answers_amount = 2;
                   document.querySelector('#add_button').onclick = function(){
@@ -42,7 +48,7 @@
                       //document.querySelector('#answers').innerHTML += `{{form.answer${answers_amount}}}`;
                   }
               </script>
-              <input type="button" name="back_button" id="back_button" value="Back">
+          <button class="back_btn" id="back_button"><p>Back</p></button>
           <!--</form>-->
       </div>
   </body>
