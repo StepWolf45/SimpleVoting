@@ -2,7 +2,8 @@ from django import forms
 
 
 class AnswersForm (forms.Form):
-    answer = forms.CharField(required=True)
+    answer = forms.CharField(required=True,widget=forms.TextInput(
+                              attrs={'class': "text_field_input"}))
 
 
 class MyForm (forms.Form):
@@ -15,7 +16,7 @@ class MyForm (forms.Form):
         required=False
     )
 
-    text_input = forms.CharField()
+    text_input = forms.CharField(widget=forms.TextInput(attrs={'class': "text_field_input"}))
     answers = forms.formset_factory(AnswersForm)
 
 

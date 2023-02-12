@@ -157,7 +157,7 @@ def create(request):
     context['history'] = history
     context['form'] = form
 
-    return render(request, 'creating.html', context)
+    return render(request, 'create_voting.html', context)
 
 
 def profile(request):

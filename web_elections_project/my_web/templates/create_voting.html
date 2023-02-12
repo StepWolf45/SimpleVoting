@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+    {% load static %}
+    <head>
+        <meta charset="utf-8">
+        <title>Create_voting</title>
+        <link rel="stylesheet" href="{% static 'voting_creating.css' %}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+  <body>
+
+      <div class="bg"></div>
+      <div class="bg bg2"></div>
+      <div class="bg bg3"></div>
+
+      <div class="create_voting">
+        <form method="POST" enctype="multipart/form-data">
+           {% csrf_token %}
+          <div id="answers">
+              <h1 id="auth_title">VOTING</h1>
+              <label class="text_field_label" for="question">Question</label>
+              {{ form.text_input }}
+              {{form.form_type}}
+              {{form.voice_picture}}
+              <label class="text_field_label" for="answer">Answer 1</label>
+              {% for answer in form.answers %}
+                  {{ answer.answer }}    
+                  
+              {% endfor %}
+              
+         </div>
+          <div id="button_area">
+              <input type="submit" name="append" id="add_button" value="Add answer">
+              <input type="submit" name="create" id="submit" value="Submit">
+          </div>
+        </form>
+
+          <button class="back_btn" id="back_button"><a href="/"><p>Back</p></a></button>
+          <!--</form>-->
+      </div>
+  </body>
+</html>
