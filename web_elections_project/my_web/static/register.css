@@ -12,11 +12,12 @@
     margin:0 auto;
     letter-spacing: 4px;
     margin-top: 20px;
+    text-align: center;
 }
 
 .main_auth{
     display: block;
-    width: 30%;
+    width: 35%;
     margin: 250px auto;
     text-align: center;
     border: 5px solid rgb(238, 161, 43);
@@ -75,9 +76,9 @@
 
 .text_field_label {
     display: block;
-    width:130px;
+    width:200px;
     height: 30px;
-    margin: 12px 0px 5px 120px;
+    margin: 12px 0px 5px 145px;
     font-size: 18px;
     text-align: left;
     color:#efa228;
@@ -120,7 +121,7 @@ body{
   .wnd {
     display: none;
     position: fixed;
-    width:548px;
+    width:635px;
     height:170px;
     padding:4px;
     background:#fff;
@@ -128,10 +129,6 @@ body{
   }
   .wnd:h2{
      margin: 0px 0px 0px 0px;
-  }
-  .wnd:ul:li{
-    
-
   }
   .btn-wrapper {
     position: relative;

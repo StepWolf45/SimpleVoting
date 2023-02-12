@@ -1,39 +1,59 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'register.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-<div align="center">
-    <h1>Let`s register!</h1>
-    <form method="POST">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td><label for="">Логин: </label></td>
-                <td>{{form.username}}</td>
-            </tr>
-            <tr><td><br></td></tr>
-            <tr>
-                <td><label for="">Пароль: </label></td>
-                <td>{{form.password1}}</td>
-            </tr>
-            <tr>
-                <td><label for="">Повторите пароль: </label></td>
-                <td>{{form.password2}}</td>
-            </tr>
-        </table>
-        {% if errors %}
-        <br>
-        {% for item in errors %}
-            <p>{{item}}</p>
-        {% endfor %}
-        {% endif %}
-    <br>
-    <input type="submit" value="Создать">
-</form>
+    
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+
+   <div class="main_auth">
+       <form method="POST">
+           {% csrf_token %}
+           <h1 id="auth_title">Register</h1>
+           <label class="text_field_label" for="question">Login</label>
+           {{form.username}}
+           <label class="text_field_label" for="question">Password<img src="../static/images/icons8-высокая-важность-30.png" class="btn"></label>
+           
+             <div class="wnd">
+                     <h2>Напоминание!</h2>
+                     <ul>
+                         <li>Пароль должен состоять минимум из 8 символов</li>
+                         <li>Пароль не должен содержать личную информацию</li>
+                         <li>Пароль не должен состоять только из цифр</li>
+                         <li>Пароль не должен быть широко используемым</li>
+                     </ul>
+             </div>
+             {{form.password1}}
+             <label class="text_field_label" for="question">Repeat password</label>
+             {{form.password2}}
+           <br>
+           {% if errors %}
+           <br>
+           {% for item in errors %}
+               <p>{{item}}</p>
+           {% endfor %}
+           {% endif %}
+           <input type="submit" class="submit_button_auth" value="Create">
+       </form>
+   </div>
 </div>
 
 </body>
+<script>
+    $('.btn').on('mouseover', function(){
+        $('.wnd').show(400)
+      })
+      
+      $('.btn').on('mouseout', function(){
+        $('.wnd').hide(400)
+      })
+  </script>
 </html>
