@@ -18,7 +18,7 @@
         <form method="POST" enctype="multipart/form-data">
            {% csrf_token %}
           <div id="answers">
-              <h1 id="auth_title">VOTING</h1>
+              <h1 id="auth_title" href="/" >VOTING</h1>
               <label class="text_field_label" for="question">Question</label>
               {{ form.text_input }}
               {{form.form_type}}

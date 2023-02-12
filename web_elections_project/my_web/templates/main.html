@@ -4,13 +4,14 @@
     {% load static %}
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static 'mainStyle.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
 </head>
 <body>
 <header>
     {% if request.user.is_authenticated %}
     <div class="userInfo">
-        <a href="/profile">{{full_name}}</a>|<a href="/logout">Выйти</a>
+        <a href="/profile">{{full_name}}</a><a class="logout" href="/logout">Back</a>
     </div>
     <div class="newVoice">
             <a href="create/">Создать новое голосование</a>
@@ -21,9 +22,14 @@
     </div>
     {% endif %}
 </header>
-<hr>
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
 <main>
+
     <section class="mainSection">
+        <h1>Голосование</h1>
             {% for voice in voices %}
             <section class="voiceBox">
                 <a href="/voice/{{voice.id}}" id="{{voice.id}}">
